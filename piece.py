@@ -43,6 +43,7 @@ class Piece(ABC):
 
      #takes in a number of steps and returns and array with the cells of the board corresponding 
     #to the steps with respect to the current position
+    #TODO: validate moves are in range
     def move_forward(self, num_steps: int) -> List[str]:
         print(num_steps)
 
@@ -55,10 +56,55 @@ class Piece(ABC):
 
         return steps
 
+    '''
+    - calculates k steps of upper diagonal, and k steps of lower diagonal,
+    - starting off from self.current_pos
+    '''
+    def move_diagonally(self, num_steps: int) -> tuple[ List[str], List[str] ]:
+        
+        x, y = self.current_pos
+        x_index = self.cols.index(x)
+        y_index = self.rows.index(y)
+        #specify size or we get index out of range error
+
+        L: List[str] = [''] * num_steps * 2 #Left diagonal
+        R: List[str] = [''] * num_steps * 2 #Right Diagonal
+
+        
+        '''
+        - `idx` indexes the upper diagonal positions.
+        - `num_steps + idx` indexes the corresponding lower diagonal positions.
+        - Ensures positions are added in the correct order during a single pass.
+        '''
+        idx = 0
+        for i in range(num_steps, 0, -1):
+
+            '''left diagonal'''
+            L[ idx ] = f'{self.cols[ x_index - i ]}{self.rows[ y_index + i ]}'
+
+            lower_diag_idx = num_steps - i + 1
+            print('lower diag ', self.cols[ x_index + lower_diag_idx ])
+            L[ num_steps + idx ] = f'{self.cols[ x_index + lower_diag_idx ]}{self.rows[ y_index - lower_diag_idx ]}'
+
+            '''right diagonal'''
+            R[ idx ] = f'{self.cols[ x_index + i ]}{self.rows[ y_index + i ]}'
+
+            lower_diag_idx = num_steps - i + 1
+            R[ num_steps + idx ] = f'{self.cols[ x_index - lower_diag_idx ]}{self.rows[ y_index - lower_diag_idx ]}'
+
+            idx += 1
+
+        return (L, R)
+
+
+    #returns the possivle cells where a piece can move
     @abstractmethod
-    def show_valid_moves(self) -> List[str]:
+    def move(self) -> List[str]:
         pass
 
+    #returns the possible cells where a piece can move to take opponent's piece
     @abstractmethod
-    def show_take_moves(self) -> List[str]:
+    def take(self) -> tuple[ List[str], List[str] ]:
         pass
+
+
