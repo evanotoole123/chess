@@ -47,7 +47,7 @@ class Piece(ABC):
     def move_forward(self, num_steps: int) -> List[str]:
         print(num_steps)
 
-        x, y = self.current_pos #ex: extracts a, 1 from string 'a1'
+        x, y = self.current_pos[0], int(self.current_pos[1]) #ex: extracts a, 1 from string 'a1'
         y_index = self.rows.index(y)
         steps: List[str] = []
 
@@ -55,7 +55,51 @@ class Piece(ABC):
             steps.append(f'{x}{self.rows[ i ]}')
 
         return steps
+    
+    #takes in a number of steps and returns and array with the cells of the board corresponding 
+    #to the steps with respect to the current position
+    #TODO: validate moves are in range
+    def move_left(self, num_steps: int) -> List[str]:
+        print(num_steps)
 
+        x, y = self.current_pos[0], self.current_pos[1]
+        #note that ord('a') - the ACII representation of 'a' has value 97
+        x_index = self.columns.index(ord(x)-97)
+        steps: List[str] = []
+        for j in range(x_index -1 , x_index - num_steps - 1, -1):
+            steps.append(f'{self.columns[j]}{y}')
+        
+        return steps
+
+    #takes in a number of steps and returns and array with the cells of the board corresponding 
+    #to the steps with respect to the current position
+    #TODO: validate moves are in range
+    def move_right(self, num_steps: int) -> List[str]:
+        print(num_steps)
+
+        x, y = self.current_pos[0], self.current_pos[1]
+        #note that ord('a') - the ACII representation of 'a' has value 97
+        x_index = self.columns.index(ord(x)-97)
+        steps: List[str] = []
+        for j in range(x_index +1 , x_index + num_steps + 1):
+            steps.append(f'{self.columns[j]}{y}')
+        
+        return steps
+
+    #takes in a number of steps and returns and array with the cells of the board corresponding 
+    #to the steps with respect to the current position
+    #TODO: validate moves are in range
+    def move_backward(self, num_steps: int) -> List[str]:
+        print(num_steps)
+
+        x, y = self.current_pos[0], int(self.current_pos) #ex: extracts a, 1 from string 'a1'
+        y_index = self.rows.index(y)
+        steps: List[str] = []
+
+        for i in range(y_index -1, y_index - num_steps -1, -1):
+            steps.append(f'{x}{self.rows[ i ]}')
+
+        return steps
     '''
     - calculates k steps of upper diagonal, and k steps of lower diagonal,
     - starting off from self.current_pos

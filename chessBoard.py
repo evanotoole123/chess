@@ -1,36 +1,43 @@
-WHITE_PAWN = 1
-BLACK_PAWN = 7
+from chessPieces import *
+#IMPORT PIECES CLASSES DONT USE NUMBERS.
 
 class ChessBoard:
-    #1 = pawn_white
-    #2 = bishop_white
-    #3 = knight_white
-    #4 = rook_white
-    #5 = queen_white
-    #6 = rook_white
-    #7 = pawn_black
-    #8 = bishop_black
-    #9 = knight_black
-    #10 = rook_black
-    #11 = queen_black
-    #12 = king_black
 
 
+    def __init__(self, as_white = True):
+        
+            #The chess board is read as each sub array being a row on the chess board.
+            #The start of the array is the side facing the user.
+            #maybe change each of these numbers into piece classes
+            #EVAN: Rook, Knight, Queen
+            #Raul: Bishop, King, Pawn
+            #
+        self.pieceLocations = [[Rook("white"), Pawn("white"), None, None, None, None, Pawn("black"), Rook("black")],\
+                            [Knight("white"), Pawn("white"), None, None, None, None, Pawn("black"), Knight("black")],\
+                            [Bishop("white"), Pawn("white"), None, None, None, None, Pawn("black"), Bishop("black")],\
+                            [Queen("white"), Pawn("white"), None, None, None, None, Pawn("black"), Queen("black")],\
+                            [King("white"), Pawn("white"), None, None, None, None, Pawn("black"), King("black")],\
+                            [Bishop("white"), Pawn("white"), None, None, None, None, Pawn("black"), Bishop("black")],\
+                            [Knight("white"), Pawn("white"), None, None, None, None, Pawn("black"), Knight("black")],\
+                            [Rook("black"), Pawn("white"), None, None, None, None, Pawn("black"), Rook("black")]]
+        
+        #we will represent the chessboard as a dictionary with each sqaure given
+        #its proper letter and number as a key. its value will be the piece at that
+        #square
+
+        self.chessBoard = {}
+
+        #the ASCII value for 'a' in python is 97. so subtract 97 to access index 0.
+
+        for column in range(ord('a'), ord('h')+1):
+            for row in range(1, 9):
+                self.pieceLocations[row-1][column-97].current_pos = f"{chr(column)}{row}"
+                self.chessBoard[f"{chr(column)}{row}"] = self.pieceLocations[row-1][column-97]
 
 
-
-    def __init__(self):
-        self.chessBoard = [[]]
-        for i in range(7):
-            self.chessBoard.append(0)
-            for j in range(7):
-                if j == 1:
-                    self.chessBoard.append(BLACK_PAWN)
-                if j == 6:
-                    self.chessBoard.append(WHITE_PAWN)
-                    
-                self.chessBoard[i].append(0)
-    
-    def move(piece, prev_pos_row,prev_pos_column, new_pos_row, new_pos_column):
+        
+    #def move(piece, prev_pos_row,prev_pos_column, new_pos_row, new_pos_column):
         #make a .get_type for each piece
         #self.chessBoard[]
+
+        print(self.chessboard)
