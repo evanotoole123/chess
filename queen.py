@@ -54,43 +54,30 @@ class Queen(Piece):
        
 
         
+              
         #print(a)
-  
+        path = []
 
         if new_pos in a[0]:
-            half = len(a[0])//2 -1
-            first = a[0][:half]
-            second = a[0][half:]
-            if new_pos in first:
-                return first
-            else:
-                return second
+            index = a[0].index(new_pos)
+            path = a[0][:index+1]
+            return path
+            
         elif new_pos in a[1]:
-            half = len(a[1])//2 -1
-            first = a[1][:half]
-            second = a[1][half:]
-            if new_pos in first:
-                return first
-            else:
-                return second
+            index = a[1].index(new_pos)
+            path = a[1][:index+1]
+            return path
             
         elif new_pos in a[2]:
-            half = len(a[2])//2 -1
-            first = a[2][:half]
-            second = a[2][half:]
-            if new_pos in first:
-                return first
-            else:
-                return second
+            index = a[2].index(new_pos)
+            path = a[2][:index+1]
+            return path
             
         elif new_pos in a[3]:
-            half = len(a[3])//2 -1
-            first = a[3][:half]
-            second = a[3][half:]
-            if new_pos in first:
-                return first
-            else:
-                return second
+            index = a[3].index(new_pos)
+            path = a[3][:index+1]
+            return path
+
 
         raise IllegalMoveError("this piece can not move in this way (in Queen.py)")
     

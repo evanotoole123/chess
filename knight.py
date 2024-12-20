@@ -29,6 +29,7 @@ class Knight(Piece):
         #the knight jumps squares so the path to the new postion only contains the new position
         path = []
         if new_pos in possible_moves:
+            path.append(self.current_pos)
             path.append(new_pos)
             return path
         
@@ -58,5 +59,4 @@ class Knight(Piece):
 
 print('TESTING KNIGHT-----------')
 knight = Knight('white', 'd4')
-#print(knight.move('b5'))
-print(knight.move_diagonally(3))
+print(knight.move('b5'))
