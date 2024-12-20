@@ -47,17 +47,18 @@ class Queen(Piece):
         
         i = 1
         try:
-            while(1):
+            for i in range(8):
                 a = self.move_diagonally(i)
                 i += 1
         except:
             pass
 
-        #print("MADE IT HEREeeee")
-       # print(a)
+        
+        #print(a)
+  
 
         if new_pos in a[0]:
-            half = len(a[0])//2 
+            half = len(a[0])//2 -1
             first = a[0][:half]
             second = a[0][half:]
             if new_pos in first:
@@ -65,9 +66,27 @@ class Queen(Piece):
             else:
                 return second
         elif new_pos in a[1]:
-            half = len(a[1])//2 
+            half = len(a[1])//2 -1
             first = a[1][:half]
             second = a[1][half:]
+            if new_pos in first:
+                return first
+            else:
+                return second
+            
+        elif new_pos in a[2]:
+            half = len(a[2])//2 -1
+            first = a[2][:half]
+            second = a[2][half:]
+            if new_pos in first:
+                return first
+            else:
+                return second
+            
+        elif new_pos in a[3]:
+            half = len(a[3])//2 -1
+            first = a[3][:half]
+            second = a[3][half:]
             if new_pos in first:
                 return first
             else:
@@ -82,3 +101,4 @@ class Queen(Piece):
 print('TESTING QUEEN--------')
 queen = Queen('white', 'd4')
 print(queen.move('a1'))
+print(queen.move('d7'))
