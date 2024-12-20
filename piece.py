@@ -64,10 +64,10 @@ class Piece(ABC):
 
         x, y = self.current_pos[0], self.current_pos[1]
         #note that ord('a') - the ACII representation of 'a' has value 97
-        x_index = self.columns.index(ord(x)-97)
+        x_index = self.cols.index((x))
         steps: List[str] = []
         for j in range(x_index -1 , x_index - num_steps - 1, -1):
-            steps.append(f'{self.columns[j]}{y}')
+            steps.append(f'{self.cols[j]}{y}')
         
         return steps
 
@@ -79,10 +79,10 @@ class Piece(ABC):
 
         x, y = self.current_pos[0], self.current_pos[1]
         #note that ord('a') - the ACII representation of 'a' has value 97
-        x_index = self.columns.index(ord(x)-97)
+        x_index = self.cols.index(x)
         steps: List[str] = []
         for j in range(x_index +1 , x_index + num_steps + 1):
-            steps.append(f'{self.columns[j]}{y}')
+            steps.append(f'{self.cols[j]}{y}')
         
         return steps
 

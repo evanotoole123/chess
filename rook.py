@@ -12,25 +12,25 @@ class Rook(Piece):
         x_index = self.cols.index(x)
         y_index = self.rows.index(y)
 
+        #remove the current position from the possible moves
         possible_x = self.cols.copy()
         possible_x.pop(x_index)
         possible_y = self.rows.copy()
         possible_y.pop(y_index)
 
+        #create our possible_moves array (these are the squares we can move to 
+        #if there are no pieces in the way)
         possible_moves = []
         for i in possible_x: possible_moves.append(f'{i}{y}')
         for j in possible_y: possible_moves.append(f'{x}{j}')
 
-        #
+        
         # triple nested if statements lol
-        #print(possible_moves)
-       # print(new_pos)
-
+        #TODO get referee to validate the move
         if new_pos in possible_moves:
             
             change_in_column = ord(self.current_pos[0]) - ord(new_pos[0])
             change_in_row =  int(self.current_pos[1]) - int(new_pos[1])
-            #TODO get referee to validate the move
             if change_in_column != 0:
                 if ((change_in_column > 0) and self.color == 'white')or\
                     ((change_in_column < 0) and self.color == 'black'):
@@ -63,3 +63,21 @@ class Rook(Piece):
 rook = Rook('white', 'a1')
 #print('START ROOK TESTING--------')
 print(rook.move('a5'))
+try:
+    rook.move('a1')
+    print("FAIL!!!")
+except IllegalMoveError as e:
+    print('IllegalMoveError properly caught')
+
+rook = Rook('black', 'h1')
+print(rook.move('d1'))
+
+try:
+    rook.move('k1')
+except IllegalMoveError as e:
+    print('IllegalMoveError properly caught')
+
+try:
+    rook.move('b2')
+except IllegalMoveError as e:
+    print('IllegalMoveError properly caught')
