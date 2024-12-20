@@ -50,4 +50,4 @@ class ChessBoard:
         #self.chessBoard[]
 
 chessboard = ChessBoard()
-print(chessboard.chessBoard)
+print(chessboard.pieceLocations)
