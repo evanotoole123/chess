@@ -14,30 +14,32 @@ class Knight(Piece):
         x_index = self.cols.index(x)
         y_index = self.rows.index(y)
 
-
+        #get a list of all possible squares
         possible_moves = []
         possible_squares = []
         for i in range(len(self.cols)):
             for j in range(len(self.rows)):
                 possible_squares.append(f'{self.cols[i]}{self.rows[j]}')
 
-        #print(possible_squares)
-
-        #the following adds all moves which we can move 3 one direction and then 1 left or right.
+        #the following adds all moves which we can move 3 one direction and then 1 left or right. (legal knight moves)
         possible_moves = self.calculate_possible(possible_squares, x, y)
-        path = []
 
+        #if the new position is in the set of possible moves then return that as a path
+        #the knight jumps squares so the path to the new postion only contains the new position
+        path = []
         if new_pos in possible_moves:
             path.append(new_pos)
             return path
-                       
+        
+        #if its not a legal move (not in the possible moves) then throw an error
         raise IllegalMoveError('new_pos is not a legal move for this piece (error in knight.py)')
     
     def take():
         pass
 
-    def calculate_possible(self, possible_squares, x, y):
+    def calculate_possible(self, possible_squares, x, y) -> List[str]:
         possible_moves = []
+
         for square in possible_squares:
             if ((((chr(ord(square[0]) - 2) == x) or chr(ord(square[0]) + 2) == x))\
                 and (((int(square[1]) - 1) == int(y)) or (int(square[1]) + 1 == int(y)))):
@@ -48,10 +50,12 @@ class Knight(Piece):
                  and ((chr(ord(square[0]) - 1) == x) or (chr(ord(square[0]) + 1) == x)):
                 
                 possible_moves.append(square)
+
         return possible_moves
 
 
 
 print('TESTING KNIGHT-----------')
 knight = Knight('white', 'd4')
-print(knight.move('b5'))
+#print(knight.move('b5'))
+print(knight.move_diagonally(3))
