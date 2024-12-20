@@ -1,4 +1,4 @@
-from chessPieces import *
+from pawn import Pawn
 #IMPORT PIECES CLASSES DONT USE NUMBERS.
 
 class ChessBoard:
@@ -40,4 +40,4 @@ class ChessBoard:
         #make a .get_type for each piece
         #self.chessBoard[]
 
-        print(self.chessboard)
+     
