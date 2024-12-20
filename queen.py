@@ -48,12 +48,10 @@ class Queen(Piece):
                     return self.move_backward(abs(change_in_row))
         
         i = 1
-        try:
-            for i in range(8):
-                a = self.move_diagonally(i)
-                i += 1
-        except:
-            pass
+        for i in range(8):
+            a = self.move_diagonally(i)
+            i += 1
+       
 
         
         #print(a)
@@ -103,4 +101,4 @@ class Queen(Piece):
 print('TESTING QUEEN--------')
 queen = Queen('white', 'd4')
 print(queen.move('a1'))
-print(queen.move('d7'))
+print(queen.move('h8'))
