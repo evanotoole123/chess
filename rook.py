@@ -4,7 +4,8 @@ from illegalMoveError import IllegalMoveError
 
 class Rook(Piece):
     # Piece is initialized through colour and current position,(__init__ method in Piece class)
-
+    def __str__(self):
+        return f'ROOK:{self.current_pos}'
 
     # returns the non validated possible moves a piece can make
     def move(self, new_pos: str) -> List[str]:

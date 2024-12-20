@@ -1,5 +1,10 @@
 from pawn import Pawn
-#IMPORT PIECES CLASSES DONT USE NUMBERS.
+from queen import Queen
+from knight import Knight
+from rook import Rook
+#from king import King
+#from bishop import Bishop
+
 
 class ChessBoard:
 
