@@ -6,6 +6,9 @@ class Rook(Piece):
     # Piece is initialized through colour and current position,(__init__ method in Piece class)
     def __str__(self):
         return f'ROOK:{self.current_pos}'
+    
+    def __repr__(self):
+        return f'Rook(colour= {self.color}, position= {self.current_pos})'
 
     # returns the non validated possible moves a piece can make
     def move(self, new_pos: str) -> List[str]:
@@ -32,6 +35,7 @@ class Rook(Piece):
             
             change_in_column = ord(self.current_pos[0]) - ord(new_pos[0])
             change_in_row =  int(self.current_pos[1]) - int(new_pos[1])
+
             if change_in_column != 0:
                 if ((change_in_column > 0) and self.color == 'white')or\
                     ((change_in_column < 0) and self.color == 'black'):

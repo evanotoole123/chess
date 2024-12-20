@@ -5,6 +5,10 @@ from illegalMoveError import IllegalMoveError
 class Bishop(Piece):
     # Piece is initialized through colour and current position,(__init__ method in Piece class)
 
+    def __repr__(self):
+        return f'Bishop(colour= {self.color}, position= {self.current_pos})'
+
+
     def __str__(self):
         return f'BISHOP:{self.current_pos}'
     

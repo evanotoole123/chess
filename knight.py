@@ -5,6 +5,9 @@ from illegalMoveError import IllegalMoveError
 class Knight(Piece):
     # Piece is initialized through colour and current position,(__init__ method in Piece class)
 
+    def __repr__(self):
+        return f'Knight(colour= {self.color}, position= {self.current_pos})'
+
     def __str__(self):
         return f'KNIGHT:{self.current_pos}'
     # returns the non validated possible moves a piece can make

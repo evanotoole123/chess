@@ -22,7 +22,7 @@ class ChessBoard:
                             [Knight("white",'a2'), Pawn("white",'b2'), None, None, None, None, Pawn("black",'g2'), Knight("black",'h2')],\
                             [Bishop("white",'a3'), Pawn("white",'b3'), None, None, None, None, Pawn("black",'g3'), Bishop("black",'h3')],\
                             [Queen("white",'a4'), Pawn("white",'b4'), None, None, None, None, Pawn("black",'g4'), Queen("black",'h4')],\
-                            [King("white",'a5'), Pawn("white",'b5'), None, None, None, None, Pawn("black",'g5'), King("black",'h5')],\
+                            ['''King("white",'a5')''', Pawn("white",'b5'), None, None, None, None, Pawn("black",'g5'), '''King("black",'h5')'''],\
                             [Bishop("white",'a6'), Pawn("white",'b6'), None, None, None, None, Pawn("black",'g6'), Bishop("black",'h6')],\
                             [Knight("white",'a7'), Pawn("white",'b7'), None, None, None, None, Pawn("black",'g7'), Knight("black",'h7')],\
                             [Rook("black",'a8'), Pawn("white",'b8'), None, None, None, None, Pawn("black",'g8'), Rook("black",'h8')]]
@@ -37,13 +37,17 @@ class ChessBoard:
 
         for column in range(ord('a'), ord('h')+1):
             for row in range(1, 9):
-                self.pieceLocations[row-1][column-97].current_pos = f"{chr(column)}{row}"
-                self.chessBoard[f"{chr(column)}{row}"] = self.pieceLocations[row-1][column-97]
+                try:
+                    self.pieceLocations[row-1][column-97].current_pos = f"{chr(column)}{row}"
+                    self.chessBoard[f"{chr(column)}{row}"] = self.pieceLocations[row-1][column-97]
+                except:
+                    self.chessBoard[f"{chr(column)}{row}"] = None
 
 
-        
+     
     #def move(piece, prev_pos_row,prev_pos_column, new_pos_row, new_pos_column):
         #make a .get_type for each piece
         #self.chessBoard[]
 
-     
+chessboard = ChessBoard()
+print(chessboard.chessBoard)

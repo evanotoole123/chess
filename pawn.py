@@ -3,7 +3,9 @@ from piece import Piece, Color
 class Pawn(Piece):
     # def __init__(self, color: Color, current_pos: str): (inherited from Piece())
 
-   
+    def __repr__(self):
+        return f'Pawn(colour= {self.color}, position= {self.current_pos})'
+
     # returns the non validated possible moves a piece can make
     def move(self) -> List[str]:
         # returns two available moves if pawns are in starting position
