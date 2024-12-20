@@ -6,7 +6,6 @@ class Pawn(Piece):
    
     # returns the non validated possible moves a piece can make
     def move(self) -> List[str]:
-
         # returns two available moves if pawns are in starting position
         for  char in self.cols:
             if self.color == Color.white and self.current_pos == f'{char}2':

@@ -47,7 +47,7 @@ class Piece(ABC):
     def move_forward(self, num_steps: int) -> List[str]:
         print(num_steps)
 
-        x, y = self.current_pos #ex: extracts a, 1 from string 'a1'
+        x, y = self.current_pos[0], self.current_pos[1] #ex: extracts a, 1 from string 'a1'
         y_index = self.rows.index(y)
         steps: List[str] = []
 
@@ -62,7 +62,7 @@ class Piece(ABC):
     def move_left(self, num_steps: int) -> List[str]:
         print(num_steps)
 
-        x, y = self.current_pos
+        x, y = self.current_pos[0], self.current_pos[1]
         #note that ord('a') - the ACII representation of 'a' has value 97
         x_index = self.columns.index(ord(x)-97)
         steps: List[str] = []
@@ -77,7 +77,7 @@ class Piece(ABC):
     def move_right(self, num_steps: int) -> List[str]:
         print(num_steps)
 
-        x, y = self.current_pos
+        x, y = self.current_pos[0], self.current_pos[1]
         #note that ord('a') - the ACII representation of 'a' has value 97
         x_index = self.columns.index(ord(x)-97)
         steps: List[str] = []
@@ -92,7 +92,7 @@ class Piece(ABC):
     def move_backward(self, num_steps: int) -> List[str]:
         print(num_steps)
 
-        x, y = self.current_pos #ex: extracts a, 1 from string 'a1'
+        x, y = self.current_pos[0], self.current_pos[1] #ex: extracts a, 1 from string 'a1'
         y_index = self.rows.index(y)
         steps: List[str] = []
 
@@ -150,5 +150,3 @@ class Piece(ABC):
     @abstractmethod
     def take(self) -> tuple[ List[str], List[str] ]:
         pass
-
-
