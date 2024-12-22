@@ -14,7 +14,14 @@ class Referee:
         self.black_check = False
     
     def validate_move(self, move: List[str])->bool:
-        
-    def swap_squares(self):
+        pass
 
+    #when a piece takes another just replace one piece with the other, and change
     def take_square(self,):
+        pass
+
+
+    #returns all possible lines/paths for a given piece
+    def find_reachable_squares(self, piece: object) -> List[List[str]]:
+        unvalidated_moves: List[List[str]] = piece.get_unvalidated_moves()
+        

@@ -65,8 +65,9 @@ class Rook(Piece):
     def take(self):
         return
     
-
-    def get_unvalidated_moves(self) -> List[str]:
+    #this function returns the possible unvalidate moves a piece can make
+    #these moves are grouped into paths/lines that we can take.
+    def get_unvalidated_moves(self) -> List[List[str]]:
         x, y = self.current_pos[0], self.current_pos[1]
         x_index = self.cols.index(x)
         y_index = self.rows.index(y)
@@ -79,12 +80,11 @@ class Rook(Piece):
 
         #create our possible_moves array (these are the squares we can move to 
         #if there are no pieces in the way)
-        possible_moves = []
-        for i in possible_x: possible_moves.append(f'{i}{y}')
-        for j in possible_y: possible_moves.append(f'{x}{j}')
+        possible_moves = [[]]
+        for i in possible_x: possible_moves[0].append(f'{i}{y}')
+        for j in possible_y: possible_moves[1].append(f'{x}{j}')
 
-
-       
+        
         return possible_moves
 
 

@@ -54,7 +54,8 @@ class Piece(ABC):
         steps: List[str] = []
 
         for i in range(y_index + 1, y_index + num_steps + 1):
-            steps.append(f'{x}{self.rows[ i ]}')
+            if (i<8):
+                steps.append(f'{x}{self.rows[ i ]}')
 
         return steps
     
@@ -106,7 +107,7 @@ class Piece(ABC):
     - calculates k steps of upper diagonal, and k steps of lower diagonal,
     - starting off from self.current_pos
     '''
-    def move_diagonally(self, num_steps: int) -> tuple[ List[str], List[str], List[str], List[str] ]:
+    def move_diagonally(self) -> tuple[ List[str], List[str], List[str], List[str] ]:
         
         x, y = self.current_pos
         x_index = self.cols.index(x)
@@ -204,4 +205,8 @@ class Piece(ABC):
     #returns the possible cells where a piece can move to take opponent's piece
     @abstractmethod
     def take(self) -> tuple[ List[str], List[str] ]:
+        pass
+
+    @abstractmethod
+    def get_unvalidated_moves(self) -> List[str]:
         pass

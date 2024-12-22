@@ -23,14 +23,15 @@ class King(Piece):
     def move(self, new_pos: str) -> List[str]:
         possible_squares = self.get_unvalidated_moves()
         path = []
-        if new_pos in possible_squares:
-            path.append(self.current_pos)
-            path.append(new_pos)
-            return path
+        for i in range(len(possible_squares)):
+            if new_pos in possible_squares[i]:
+                path.append(self.current_pos)
+                path.append(new_pos)
+                return path
         raise IllegalMoveError('new_pos is not a legal move for this piece (error in king.py)')
 
 
-    def get_unvalidated_moves(self) -> List[str]:
+    def get_unvalidated_moves(self) -> List[List[str]]:
         x, y = self.current_pos[0], self.current_pos[1]
         x_index = self.cols.index(x)
         y_index = self.rows.index(y)
@@ -46,45 +47,45 @@ class King(Piece):
         #check if our king is in the corner
         if (x == 'a' and y == '1') or (x == 'a' and y == '8') or (x == 'h' and y == '1') or (x == 'h' and y == '8'):
             if x == 'a':
-                possible_moves.append(f'b{y}')
+                possible_moves.append([f'b{y}'])
             elif x == 'h':
-                possible_moves.append(f'g{y}')
+                possible_moves.append([f'g{y}'])
             if y == '1':
-                possible_moves.append(f'{x}2')
+                possible_moves.append([f'{x}2'])
             elif y == '8':
-                possible_moves.append(f'{x}7')
+                possible_moves.append([f'{x}7'])
             if x == 'a' and y == '1':
-                possible_moves.append(f'b2')
+                possible_moves.append([f'b2'])
             elif x == 'a' and y == '8':
-                possible_moves.append(f'b7')
+                possible_moves.append([f'b7'])
             elif x == 'h' and y == '1':
-                possible_moves.append(f'g2')
+                possible_moves.append([f'g2'])
             elif x == 'h' and y == '8':
-                possible_moves.append(f'g7')
+                possible_moves.append([f'g7'])
             return possible_moves
         
         #otherwise check if our king is on the edge
         if (x == 'a') or (x == 'h') or (y == '1') or (y == '8'):
             if x == 'a':
-                possible_moves.append(f'b{y}')
+                possible_moves.append([f'b{y}'])
             elif x == 'h':
-                possible_moves.append(f'g{y}')
+                possible_moves.append([f'g{y}'])
             if y == '1':
-                possible_moves.append(f'{x}2')
+                possible_moves.append([f'{x}2'])
             elif y == '8':
-                possible_moves.append(f'{x}7')
+                possible_moves.append([f'{x}7'])
             return possible_moves
         
-        print("WE HAVE MADE IT HERE")
+
         #otherwise king has all possible moves around it
-        possible_moves = [f'{x}{self.rows[y_index+1]}',
-                        f'{self.cols[x_index-1]}{self.rows[y_index+1]}',
-                        f'{self.cols[x_index+1]}{self.rows[y_index+1]}',
-                        f'{self.cols[x_index-1]}{y}',
-                        f'{self.cols[x_index+1]}{y}',
-                        f'{self.cols[x_index+1]}{self.rows[y_index-1]}',
-                        f'{self.cols[x_index-1]}{self.rows[y_index-1]}',
-                        f'{x}{self.rows[y_index-1]}']
+        possible_moves = [[f'{x}{self.rows[y_index+1]}'],
+                        [f'{self.cols[x_index-1]}{self.rows[y_index+1]}'],
+                        [f'{self.cols[x_index+1]}{self.rows[y_index+1]}'],
+                        [f'{self.cols[x_index-1]}{y}'],
+                        [f'{self.cols[x_index+1]}{y}'],
+                        [f'{self.cols[x_index+1]}{self.rows[y_index-1]}'],
+                        [f'{self.cols[x_index-1]}{self.rows[y_index-1]}'],
+                        [f'{x}{self.rows[y_index-1]}']]
         
         return possible_moves
 

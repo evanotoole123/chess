@@ -51,10 +51,9 @@ class Queen(Piece):
                 else:
                     return self.move_backward(abs(change_in_row))
         
-        i = 1
-        for i in range(8):
-            a = self.move_diagonally(i)
-            i += 1
+     
+        a = self.move_diagonally()
+         
        
 
         
@@ -88,7 +87,7 @@ class Queen(Piece):
     def take():
         pass
 
-    def get_unvalidated_moves(self) -> List[str]:
+    def get_unvalidated_moves(self) -> List[List[str]]:
         x, y = self.current_pos[0], self.current_pos[1]
         x_index = self.cols.index(x)
         y_index = self.rows.index(y)
@@ -101,16 +100,15 @@ class Queen(Piece):
 
         #create our possible_moves array (these are the squares we can move to 
         #if there are no pieces in the way)
-        possible_moves = []
-        for i in possible_x: possible_moves.append(f'{i}{y}')
-        for j in possible_y: possible_moves.append(f'{x}{j}')
+        possible_moves = [[]]
+        for i in possible_x: possible_moves[0].append(f'{i}{y}')
+        for j in possible_y: possible_moves[1].append(f'{x}{j}')
 
-        i = 1
-        for i in range(8):
-            a = self.move_diagonally(i)
-            i += 1
+        
+        a = self.move_diagonally(i)
+            
        
-        possible_moves.extend([a[0], a[1], a[2], a[3]])
+        possible_moves.append([a[0], a[1], a[2], a[3]])
 
         return possible_moves
     
@@ -119,5 +117,3 @@ print('TESTING QUEEN--------')
 queen = Queen('white', 'd4')
 print(queen.move('a1'))
 print(queen.move('h8'))
-
-

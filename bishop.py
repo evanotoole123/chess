@@ -18,14 +18,11 @@ class Bishop(Piece):
         x_index = self.cols.index(x)
         y_index = self.rows.index(y)
 
-        i = 1
-        for i in range(8):
-            a = self.move_diagonally(i)
-            i += 1
+  
+        a = self.move_diagonally()
+            
        
 
-        
-        #print(a)
         path = []
 
         if new_pos in a[0]:
@@ -52,6 +49,20 @@ class Bishop(Piece):
     
     def take():
         pass
+
+    def get_unvalidated_moves(self) -> List[List[str]]:
+        x, y = self.current_pos[0], self.current_pos[1]
+       
+        possible_moves = []
+
+       
+        a = self.move_diagonally()
+   
+       
+        possible_moves.append([a[0], a[1], a[2], a[3]])
+
+        return possible_moves
+    
 
 print('TESTING BISHOP--------')
 bishop = Bishop('white', 'c4')

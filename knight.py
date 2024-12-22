@@ -42,6 +42,9 @@ class Knight(Piece):
     def take():
         pass
 
+    #this function checks which out of every square is currently reachable by the knight
+    #this is done by subtracting from each square the amount a knight can move, to see
+    #if the knight is reachable
     def calculate_possible(self, possible_squares, x, y) -> List[str]:
         possible_moves = []
 
@@ -58,7 +61,7 @@ class Knight(Piece):
 
         return possible_moves
 
-    def get_unvalidated_moves(self) -> List[str]:
+    def get_unvalidated_moves(self) -> List[List[str]]:
         x, y = self.current_pos[0], self.current_pos[1]
         x_index = self.cols.index(x)
         y_index = self.rows.index(y)
@@ -70,9 +73,12 @@ class Knight(Piece):
             for j in range(len(self.rows)):
                 possible_squares.append(f'{self.cols[i]}{self.rows[j]}')
 
+        path_list = []
         #the following adds all moves which we can move 3 one direction and then 1 left or right. (legal knight moves)
         possible_moves = self.calculate_possible(possible_squares, x, y)
-        return possible_moves
+        for move in possible_moves:
+            path_list.append(move)
+        return path_list
 
 
 
