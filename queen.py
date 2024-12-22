@@ -100,20 +100,19 @@ class Queen(Piece):
 
         #create our possible_moves array (these are the squares we can move to 
         #if there are no pieces in the way)
-        possible_moves = [[]]
+        possible_moves = [[],[]]
         for i in possible_x: possible_moves[0].append(f'{i}{y}')
         for j in possible_y: possible_moves[1].append(f'{x}{j}')
 
-        
-        a = self.move_diagonally(i)
+        if self.color == 'white':
+            for item in possible_moves:
+                item.reverse()
+                
+        a = self.move_diagonally()
             
        
-        possible_moves.append([a[0], a[1], a[2], a[3]])
+        possible_moves.extend(a)
 
         return possible_moves
     
 
-print('TESTING QUEEN--------')
-queen = Queen('white', 'd4')
-print(queen.move('a1'))
-print(queen.move('h8'))

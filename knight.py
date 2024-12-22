@@ -77,12 +77,9 @@ class Knight(Piece):
         #the following adds all moves which we can move 3 one direction and then 1 left or right. (legal knight moves)
         possible_moves = self.calculate_possible(possible_squares, x, y)
         for move in possible_moves:
-            path_list.append(move)
+            path_list.append([move])
         return path_list
 
 
 
 
-print('TESTING KNIGHT-----------')
-knight = Knight('white', 'd4')
-print(knight.move('b5'))

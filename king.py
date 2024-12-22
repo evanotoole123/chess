@@ -91,8 +91,3 @@ class King(Piece):
 
         
 
-print('TESTING KING--------')
-king = King('white', 'e4')
-print(king.move('e5'))
-king2 = King('white', 'a1')
-print(king2.move('b2'))

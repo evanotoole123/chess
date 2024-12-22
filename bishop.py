@@ -58,13 +58,7 @@ class Bishop(Piece):
        
         a = self.move_diagonally()
    
-       
-        possible_moves.append([a[0], a[1], a[2], a[3]])
+     
+        possible_moves.extend(a)
 
         return possible_moves
-    
-
-print('TESTING BISHOP--------')
-bishop = Bishop('white', 'c4')
-print(bishop.move('b3'))
-print(bishop.move('g8'))

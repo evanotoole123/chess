@@ -29,26 +29,37 @@ class Pawn(Piece):
         x, y = ord(self.current_pos[0]), int(self.current_pos[1])
         possible_moves = [[]]
 
-        possible_moves.append([self.move_diagonally()[0][1]])
-        possible_moves.append([self.move_diagonally()[2][1]])
-
-        if self.color == 'white':
-            if y == 2:
-                possible_moves[0] = (self.move_forward(2))
-            else:
-                possible_moves[0] = (self.move_forward(1))
-           
-        else:  # Black
+        LD = self.move_diagonally()[1]
+        LU = self.move_diagonally()[0]
+        RD = self.move_diagonally()[3]
+        RU = self.move_diagonally()[2]
+        
+        if self.color == 'black':
             if y == 7:
-                possible_moves[0] = (self.move_forward(2))
+                possible_moves.append(self.move_forward(2))
             else:
-                possible_moves[0] = (self.move_forward(1))
- 
+                possible_moves.append(self.move_forward(1))
+            if len(LU) > 1:
+                possible_moves.append([self.move_diagonally()[0][1]])
+            if len(RU) > 1:
+                possible_moves.append([self.move_diagonally()[2][1]])
+
+        else: #white
+            if y == 2:
+                   possible_moves.append(self.move_backward(2))
+            else:
+                possible_moves.append(self.move_backward(1))
+            if len(LU) > 1:
+                possible_moves.append([self.move_diagonally()[1][1]])
+            if len(RU) > 1:
+                possible_moves.append([self.move_diagonally()[3][1]])
+           
+       
         
         return possible_moves
 
 
-
+'''
 
 p_white_start = Pawn(Color.white, 'd2')
 p_white_moved = Pawn(Color.white, 'd3')
@@ -59,6 +70,9 @@ p_black_moved = Pawn(Color.black, 'd6')
 
 print(p_black_start.get_unvalidated_moves())
 #print(p_black_moved.get_unvalidated_moves())
+
+'''
+
 '''
 print('Pawn Tests  move() START --------------')
 print(f'white start {p_white_start.current_pos}: ', p_white_start.move())

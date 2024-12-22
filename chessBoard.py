@@ -18,15 +18,18 @@ class ChessBoard:
             #EVAN: Rook, Knight, Queen
             #Raul: Bishop, King, Pawn
             #
-        self.pieceLocations = [[Rook("white",'a1'), Pawn("white",'b1'), None, None, None, None, Pawn("black",'g1'), Rook("black",'h1')],\
-                            [Knight("white",'a2'), Pawn("white",'b2'), None, None, None, None, Pawn("black",'g2'), Knight("black",'h2')],\
-                            [Bishop("white",'a3'), Pawn("white",'b3'), None, None, None, None, Pawn("black",'g3'), Bishop("black",'h3')],\
-                            [Queen("white",'a4'), Pawn("white",'b4'), None, None, None, None, Pawn("black",'g4'), Queen("black",'h4')],\
-                            [King("white",'a5'), Pawn("white",'b5'), None, None, None, None, Pawn("black",'g5'), King("black",'h5')],\
-                            [Bishop("white",'a6'), Pawn("white",'b6'), None, None, None, None, Pawn("black",'g6'), Bishop("black",'h6')],\
-                            [Knight("white",'a7'), Pawn("white",'b7'), None, None, None, None, Pawn("black",'g7'), Knight("black",'h7')],\
-                            [Rook("black",'a8'), Pawn("white",'b8'), None, None, None, None, Pawn("black",'g8'), Rook("black",'h8')]]
-        
+   
+        self.pieceLocations = [
+            [Rook("white", 'a1'), Knight("white", 'b1'), Bishop("white", 'c1'), Queen("white", 'd1'), King("white", 'e1'), Bishop("white", 'f1'), Knight("white", 'g1'), Rook("white", 'h1')],
+            [Pawn("white", 'a2'), Pawn("white", 'b2'), Pawn("white", 'c2'), Pawn("white", 'd2'), Pawn("white", 'e2'), Pawn("white", 'f2'), Pawn("white", 'g2'), Pawn("white", 'h2')],
+            [None, None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None, None],
+            [None, None, None, None, None, None, None, None],
+            [Pawn("black", 'a7'), Pawn("black", 'b7'), Pawn("black", 'c7'), Pawn("black", 'd7'), Pawn("black", 'e7'), Pawn("black", 'f7'), Pawn("black", 'g7'), Pawn("black", 'h7')],
+            [Rook("black", 'a8'), Knight("black", 'b8'), Bishop("black", 'c8'), Queen("black", 'd8'), King("black", 'e8'), Bishop("black", 'f8'), Knight("black", 'g8'), Rook("black", 'h8')]
+        ]
+
         #we will represent the chessboard as a dictionary with each sqaure given
         #its proper letter and number as a key. its value will be the piece at that
         #square
@@ -48,6 +51,7 @@ class ChessBoard:
     #def move(piece, prev_pos_row,prev_pos_column, new_pos_row, new_pos_column):
         #make a .get_type for each piece
         #self.chessBoard[]
-
+'''
 chessboard = ChessBoard()
-print(chessboard.pieceLocations)
+print(chessboard.chessBoard)
+'''

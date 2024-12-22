@@ -80,9 +80,15 @@ class Rook(Piece):
 
         #create our possible_moves array (these are the squares we can move to 
         #if there are no pieces in the way)
-        possible_moves = [[]]
+        possible_moves = [[],[]]
+        
         for i in possible_x: possible_moves[0].append(f'{i}{y}')
+   
         for j in possible_y: possible_moves[1].append(f'{x}{j}')
+
+        if self.color == 'white':
+            for item in possible_moves:
+                item.reverse()
 
         
         return possible_moves

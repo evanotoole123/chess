@@ -56,7 +56,7 @@ class Piece(ABC):
         for i in range(y_index + 1, y_index + num_steps + 1):
             if (i<8):
                 steps.append(f'{x}{self.rows[ i ]}')
-
+        steps.reverse()
         return steps
     
     #takes in a number of steps and returns and array with the cells of the board corresponding 
@@ -71,7 +71,7 @@ class Piece(ABC):
         steps: List[str] = []
         for j in range(x_index -1 , x_index - num_steps - 1, -1):
             steps.append(f'{self.cols[j]}{y}')
-        
+        steps.reverse
         return steps
 
     #takes in a number of steps and returns and array with the cells of the board corresponding 
@@ -86,7 +86,7 @@ class Piece(ABC):
         steps: List[str] = []
         for j in range(x_index +1 , x_index + num_steps + 1):
             steps.append(f'{self.cols[j]}{y}')
-        
+        steps.reverse()
         return steps
 
     #takes in a number of steps and returns and array with the cells of the board corresponding 
@@ -101,13 +101,13 @@ class Piece(ABC):
 
         for i in range(y_index -1, y_index - num_steps -1, -1):
             steps.append(f'{x}{self.rows[ i ]}')
-
+        steps.reverse()
         return steps
     '''
     - calculates k steps of upper diagonal, and k steps of lower diagonal,
     - starting off from self.current_pos
     '''
-    def move_diagonally(self) -> tuple[ List[str], List[str], List[str], List[str] ]:
+    def move_diagonally(self) -> List[List[str]]:
         
         x, y = self.current_pos
         x_index = self.cols.index(x)
@@ -160,8 +160,9 @@ class Piece(ABC):
 
         tmp1 = x_index
         tmp2 = y_index
+        
        
-        return (LU,LD,RU,RD)
+        return [LU,LD,RU,RD]
 
 
 
