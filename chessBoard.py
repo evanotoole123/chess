@@ -3,7 +3,7 @@ from queen import Queen
 from knight import Knight
 from rook import Rook
 from bishop import Bishop
-#from king import King
+from king import King
 
 
 
@@ -22,7 +22,7 @@ class ChessBoard:
                             [Knight("white",'a2'), Pawn("white",'b2'), None, None, None, None, Pawn("black",'g2'), Knight("black",'h2')],\
                             [Bishop("white",'a3'), Pawn("white",'b3'), None, None, None, None, Pawn("black",'g3'), Bishop("black",'h3')],\
                             [Queen("white",'a4'), Pawn("white",'b4'), None, None, None, None, Pawn("black",'g4'), Queen("black",'h4')],\
-                            ['''King("white",'a5')''', Pawn("white",'b5'), None, None, None, None, Pawn("black",'g5'), '''King("black",'h5')'''],\
+                            [King("white",'a5'), Pawn("white",'b5'), None, None, None, None, Pawn("black",'g5'), King("black",'h5')],\
                             [Bishop("white",'a6'), Pawn("white",'b6'), None, None, None, None, Pawn("black",'g6'), Bishop("black",'h6')],\
                             [Knight("white",'a7'), Pawn("white",'b7'), None, None, None, None, Pawn("black",'g7'), Knight("black",'h7')],\
                             [Rook("black",'a8'), Pawn("white",'b8'), None, None, None, None, Pawn("black",'g8'), Rook("black",'h8')]]

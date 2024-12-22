@@ -64,6 +64,31 @@ class Rook(Piece):
     
     def take(self):
         return
+    
+
+    def get_unvalidated_moves(self) -> List[str]:
+        x, y = self.current_pos[0], self.current_pos[1]
+        x_index = self.cols.index(x)
+        y_index = self.rows.index(y)
+
+        #remove the current position from the possible moves
+        possible_x = self.cols.copy()
+        possible_x.pop(x_index)
+        possible_y = self.rows.copy()
+        possible_y.pop(y_index)
+
+        #create our possible_moves array (these are the squares we can move to 
+        #if there are no pieces in the way)
+        possible_moves = []
+        for i in possible_x: possible_moves.append(f'{i}{y}')
+        for j in possible_y: possible_moves.append(f'{x}{j}')
+
+
+       
+        return possible_moves
+
+
+
 
 rook = Rook('white', 'a1')
 #print('START ROOK TESTING--------')

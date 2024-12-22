@@ -58,6 +58,23 @@ class Knight(Piece):
 
         return possible_moves
 
+    def get_unvalidated_moves(self) -> List[str]:
+        x, y = self.current_pos[0], self.current_pos[1]
+        x_index = self.cols.index(x)
+        y_index = self.rows.index(y)
+
+        #get a list of all possible squares
+        possible_moves = []
+        possible_squares = []
+        for i in range(len(self.cols)):
+            for j in range(len(self.rows)):
+                possible_squares.append(f'{self.cols[i]}{self.rows[j]}')
+
+        #the following adds all moves which we can move 3 one direction and then 1 left or right. (legal knight moves)
+        possible_moves = self.calculate_possible(possible_squares, x, y)
+        return possible_moves
+
+
 
 
 print('TESTING KNIGHT-----------')
