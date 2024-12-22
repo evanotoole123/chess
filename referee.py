@@ -4,6 +4,7 @@ from rook import Rook
 from knight import Knight
 from queen import Queen
 from bishop import Bishop
+from king import King
 from typing import List
 
 
@@ -17,9 +18,7 @@ class Referee:
         pass
 
     #when a piece takes another just replace one piece with the other, and change
-    def take_square(self,):
-        pass
-
+    def take_square(self, piece: object, square: str):
 
     #returns all possible lines/paths for a given piece
     def find_reachable_squares(self, piece: object) -> List[str]:
