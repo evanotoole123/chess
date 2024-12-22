@@ -1,5 +1,6 @@
 from chessBoard import ChessBoard
 from pawn import Pawn
+from piece import Piece
 from rook import Rook
 from knight import Knight
 from queen import Queen
@@ -22,7 +23,7 @@ class Referee:
 
 
     #returns all possible lines/paths for a given piece
-    def find_reachable_squares(self, piece: object) -> List[str]:
+    def find_reachable_squares(self, piece: Piece) -> List[str]:
         unvalidated_moves: List[List[str]] = piece.get_unvalidated_moves()
         reachable_squares = []
     
@@ -31,7 +32,7 @@ class Referee:
         return reachable_squares
             
            
-    def find_longest_sequence(self, line: List[str], piece: object) -> List[str]:
+    def find_longest_sequence(self, line: List[str], piece: Piece) -> List[str]:
         reachable_line = []
         
         for square in line:
@@ -48,6 +49,8 @@ class Referee:
                 break
         
         return reachable_line
+
+    
     
 
 print('BEGIN TESTING REFEREE ------------REACHABLE SQUARES')
