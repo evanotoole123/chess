@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import List
+from typing import List, Literal
 
 class Color(Enum):
     white = 'white'
@@ -37,11 +37,11 @@ cols = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' ]
 
 
 class Piece(ABC):
-    def __init__(self, color: Color, current_pos: str):
+    def __init__(self, color: Literal['white', 'black'], current_pos: str):
         self.color = color
         self.current_pos = current_pos
-        self.rows = rows if color == Color.white else rows[::-1]
-        self.cols = cols if color == Color.white else cols[::-1]
+        self.rows = rows if color == 'white' else rows[::-1]
+        self.cols = cols if color == 'white' else cols[::-1]
 
      #takes in a number of steps and returns and array with the cells of the board corresponding 
     #to the steps with respect to the current position
@@ -200,7 +200,7 @@ class Piece(ABC):
 
     #returns the possivle cells where a piece can move
     @abstractmethod
-    def move(self) -> List[str]:
+    def move(self, new_pos: str) -> List[str]:
         pass
 
     #returns the possible cells where a piece can move to take opponent's piece
