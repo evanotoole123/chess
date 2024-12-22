@@ -21,6 +21,9 @@ class Referee:
     
     def validate_move(self, move: List[str])->bool:
         pass
+    
+    def is_in_check(self, color: str)->bool:
+        pass
 
     #when a piece takes another just replace one piece with the other, and change
     def take_square(self, piece: Piece, square: str):
