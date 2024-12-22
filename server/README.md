@@ -10,8 +10,15 @@
 2. activate venv by running: ```source .venv/bin/activate```
 3. verify venv is active: ```which python3```
     output should look like: ```path/to/server/.venv/bin/python3```
+4. install pip: ```python3 -m pip install --upgrade pip```
+5. install fastapi: ```pip install fastapi[standard]```
 
 Note:
     every time a new package is installed, such as running ```pip install <package-name>```
     the environment needs to be activated again.
 
+
+# Starting Development
+
+documentation for [fastapi](https://fastapi.tiangolo.com/tutorial/first-steps/)
+1. run ```fastapi main.py``` to get started

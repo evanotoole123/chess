@@ -43,6 +43,13 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "Installing FastAPI with standard dependencies..."
+pip install fastapi[standard]
+if [ $? -ne 0 ]; then
+    echo "Failed to install FastAPI. Exiting."
+    exit 1
+fi
+
 echo "Setup complete. Remember to activate the virtual environment before installing any new packages with:"
 echo "source .venv/bin/activate"
 
