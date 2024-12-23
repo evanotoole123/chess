@@ -189,7 +189,7 @@ class Referee:
             taken_piece = self.chessboard_dict[ new_pos ]
             valid_moves = self.find_reachable_squares(curr_piece)
 
-            valid_move = self.validate_move(curr_piece, new_pos, taken_piece, valid_moves)
+            valid_move = self.validate_move(curr_piece, taken_piece, valid_moves)
             if not valid_move:
                 return False
 
