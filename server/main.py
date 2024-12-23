@@ -37,8 +37,17 @@ async def pvp(ws: WebSocket, session_id: str):
         await ws.accept()
         match: Match = mm.get_game(session_id)
 
-        while True and match.p1 and match.p2 :
-            selected_cell = await ws.receive_json()
+        while True:
+            player_data = await ws.receive_json()
+            player_id = player_data.get('player_id', None)
+            player_move = player_data.get('move', None)
+
+            if player_id:
+                match.joined(player_id)
+
+            if player_id and player_move and match.ready:
+                payload =match.handle_player_move(player_id, player_move)
+                await ws.send_json( payload )
             
 
     except WebSocketException:

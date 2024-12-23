@@ -16,6 +16,26 @@ class Match:
         self.p1 = Player(p1)
         self.p2 = Player(p2)
 
+        self.p1_joined = False
+        self.p2_joined = False
+        self.ready = self.p1_joined and self.p2_joined
+        self.current_in_turn = self.p1.id
+
+    def joined(self, id: str) -> None:
+        if self.p1.id == id:
+            self.p1_joined = True
+
+        if self.p2.id == id:
+            self.p2_joined = True
+
+        self.ready  = self.p1_joined and self.p2_joined
+
+    def handle_player_move(self, player_id: str, move: str):
+        if self.current_in_turn != player_id:
+            return
+        return []
+
+
 MatchesSchema = Dict[ str, Match ]
 class MatchMaking:
     def __init__(self):

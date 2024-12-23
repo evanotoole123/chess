@@ -19,7 +19,16 @@ Note:
     the environment needs to be activated again.
 
 
-# Starting Development
+# Development
+
+## Running the app
 
 documentation for [fastapi](https://fastapi.tiangolo.com/tutorial/first-steps/)
 1. run ```fastapi main.py``` to get started
+
+## Running the tests
+
+Ommits print statement outputs
+1. run ```pytest``` from within server 
+
+To view prints include the -s flag
