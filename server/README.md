@@ -11,7 +11,8 @@
 3. verify venv is active: ```which python3```
     output should look like: ```path/to/server/.venv/bin/python3```
 4. install pip: ```python3 -m pip install --upgrade pip```
-5. install fastapi: ```pip install fastapi[standard]```
+5. install all dependencies from requirements.txt: ```pip install <package-name-from-requirements.txt>```
+
 
 Note:
     every time a new package is installed, such as running ```pip install <package-name>```
