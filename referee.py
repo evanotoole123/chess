@@ -6,7 +6,7 @@ from knight import Knight
 from queen import Queen
 from bishop import Bishop
 from king import King
-from typing import Any, List
+from typing import Any, List, Optional
 
 
 class Referee:
@@ -60,7 +60,7 @@ class Referee:
         return False
 
 
-    def is_pinnable(self, piece: object)->bool:
+    def is_pinnable(self, piece: Piece)->bool:
 
         if piece.color == 'white':
             reachable = self.find_reachable_squares(piece)
@@ -85,14 +85,14 @@ class Referee:
             return False
            
     
-    def validate_move(self, curr_piece: object, taken_piece:object, moves: List[str])->bool:
+    def validate_move(self, curr_piece: Piece, taken_piece:Piece, moves: List[str])->bool:
         current_pos = curr_piece.current_pos
         new_pos = taken_piece.current_pos
         #checks if the square is in the possible moves for the piece
         #then checks if the move put ourselves in check (if it does we can't do the move)
 
         if new_pos in moves:
-            self.chessboard_dct[new_pos] = curr_piece
+            self.chessboard_dict[new_pos] = curr_piece
             self.chessboard_dict[current_pos] = None
             if curr_piece.color == 'white':
                 self.white_check = self.white_in_check(curr_piece.color)
@@ -127,12 +127,12 @@ class Referee:
         return False
     
 
-    def get_white_king_square(self)->str:
+    def get_white_king_square(self)-> Optional[str]:
         for object in self.chessboard_dict.values():
             if type(object) == King and object.color == 'white':
                 return object.current_pos
         
-    def get_black_king_square(self)->str:
+    def get_black_king_square(self)->Optional[str]:
         for object in self.chessboard_dict.values():
             if type(object) == King and object.color == 'black':
                 return object.current_pos
@@ -210,6 +210,7 @@ class Referee:
     
     
 
+'''
 print('BEGIN TESTING REFEREE ------------REACHABLE SQUARES')
 print('testing starting points in chessboard: only pawns and knights can move')
 ref = Referee()
@@ -235,3 +236,4 @@ ref.move('a5', 'a6')
 ref.move('a6', 'b7')
 print(ref.taken_by_white)
 
+'''
