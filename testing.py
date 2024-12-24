@@ -7,6 +7,21 @@ from bishop import Bishop
 from king import King
 from typing import List
 from piece import Color
+from referee import Referee
+
+
+print('TESTING POSITIONS--------')
+print('TEST ONE SCHOLARS MATE')
+#series of moves: white pawn to e4, black pawn to e5, white bishop to c4,
+#black knight c6, white queen to f3 , black bishop to d6, white queen to f7
+r1 = Referee()
+r1.move('e2', 'e4')
+r1.move('e7', 'e5')
+r1.move('f1', 'c4')
+r1.move('b8', 'c6')
+r1.move('d1', 'f3')
+r1.move('f8', 'd6')
+r1.move('f3', 'f7')
 
 '''
 
@@ -37,7 +52,7 @@ print('Pawn Tests take() START --------------')
 print(f'origin: [ {p_take.current_pos} ]: ', p_take.take())
 print('Pawn Tests take() END --------------\n')
 
-'''
+
 
 print('TESTING KNIGHT-----------')
 knight = Knight('white', 'd4')
@@ -61,3 +76,6 @@ print('TESTING BISHOP--------')
 bishop = Bishop('white', 'c4')
 print(bishop.move('b3'))
 print(bishop.move('g8'))
+'''
+
+
