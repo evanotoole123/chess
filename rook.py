@@ -73,29 +73,25 @@ class Rook(Piece):
         y_index = self.rows.index(y)
 
         #remove the current position from the possible moves
-        possible_x = self.cols.copy()
-        possible_x.pop(x_index)
-        possible_y = self.rows.copy()
-        possible_y.pop(y_index)
-
+      
         #create our possible_moves array (these are the squares we can move to 
         #if there are no pieces in the way)
-        possible_moves = [[],[]]
+       
         
-        for i in possible_x: possible_moves[0].append(f'{i}{y}')
-   
-        for j in possible_y: possible_moves[1].append(f'{x}{j}')
-
-        if self.color == 'white':
-            for item in possible_moves:
-                item.reverse()
-
+        b = self.move_forward(8)
+        c = self.move_backward(8)
+        d = self.move_right(8)
+        e = self.move_left(8)
+        a = self.move_diagonally()
+       
+        complete_arr = [b, c, d, e]
+        complete_arr.extend(a)
         
-        return possible_moves
+        return complete_arr
 
 
 
-
+'''
 rook = Rook('white', 'a1')
 #print('START ROOK TESTING--------')
 print(rook.move('a5'))
@@ -117,3 +113,5 @@ try:
     rook.move('b2')
 except IllegalMoveError as e:
     print('IllegalMoveError properly caught')
+
+'''

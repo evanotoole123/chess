@@ -9,8 +9,23 @@ from typing import List
 from piece import Color
 from referee import Referee
 
+'''
+print("TESTING MOVE METHODS____________________________________________")
+r1 = Referee()
+r1.move('e2', 'e4')
+print(r1.chessboard_dict['e2'])
+print(r1.chessboard_dict['e4'])
+r1.move('d2', 'd4')
+print(r1.chessboard_dict['d2'])
+print(r1.chessboard_dict['d4'])
+r1.move('c1', 'f4')
+print(r1.chessboard_dict['c1'])
+print(r1.chessboard_dict['f4'])
+print(r1.chessboard_dict['f4'].get_unvalidated_moves())
 
-print('TESTING POSITIONS--------')
+'''
+
+print('TESTING POSITIONS----------------------------------')
 print('TEST ONE SCHOLARS MATE')
 #series of moves: white pawn to e4, black pawn to e5, white bishop to c4,
 #black knight c6, white queen to f3 , black bishop to d6, white queen to f7
@@ -22,6 +37,12 @@ r1.move('b8', 'c6')
 r1.move('d1', 'f3')
 r1.move('f8', 'd6')
 r1.move('f3', 'f7')
+print('BLACK AND WHITE CHECK:')
+print(r1.black_check) ##working correct
+print(r1.white_check) ##working correct
+print('CHECKMATE:') 
+print(r1.checkmate()) ##FAILING
+
 
 '''
 

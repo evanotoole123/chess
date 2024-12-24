@@ -57,7 +57,7 @@ class Bishop(Piece):
 
        
         a = self.move_diagonally()
-   
+       
      
         possible_moves.extend(a)
 

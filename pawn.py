@@ -40,9 +40,9 @@ class Pawn(Piece):
             else:
                 possible_moves.append(self.move_forward(1))
             if len(LU) > 1:
-                possible_moves.append([self.move_diagonally()[0][1]])
+                possible_moves.append([self.move_diagonally()[0][0]])
             if len(RU) > 1:
-                possible_moves.append([self.move_diagonally()[2][1]])
+                possible_moves.append([self.move_diagonally()[2][0]])
 
         else: #white
             if y == 2:
@@ -50,9 +50,9 @@ class Pawn(Piece):
             else:
                 possible_moves.append(self.move_backward(1))
             if len(LU) > 1:
-                possible_moves.append([self.move_diagonally()[1][1]])
+                possible_moves.append([self.move_diagonally()[1][0]])
             if len(RU) > 1:
-                possible_moves.append([self.move_diagonally()[3][1]])
+                possible_moves.append([self.move_diagonally()[3][0]])
            
        
         

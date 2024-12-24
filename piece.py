@@ -47,14 +47,13 @@ class Piece(ABC):
     #to the steps with respect to the current position
     #TODO: validate moves are in range
     def move_forward(self, num_steps: int) -> List[str]:
-        print(num_steps)
-
+        
         x, y = self.current_pos #ex: extracts a, 1 from string 'a1'
         y_index = self.rows.index(y)
         steps: List[str] = []
 
         for i in range(y_index + 1, y_index + num_steps + 1):
-            if (i<8):
+            if -1<i<8:
                 steps.append(f'{x}{self.rows[ i ]}')
         steps.reverse()
         return steps
@@ -63,14 +62,14 @@ class Piece(ABC):
     #to the steps with respect to the current position
     #TODO: validate moves are in range
     def move_left(self, num_steps: int) -> List[str]:
-        print(num_steps)
-
+       
         x, y = self.current_pos
         #note that ord('a') - the ACII representation of 'a' has value 97
         x_index = self.cols.index((x))
         steps: List[str] = []
         for j in range(x_index -1 , x_index - num_steps - 1, -1):
-            steps.append(f'{self.cols[j]}{y}')
+            if -1 <j < 8:
+                steps.append(f'{self.cols[j]}{y}')
         steps.reverse
         return steps
 
@@ -78,14 +77,15 @@ class Piece(ABC):
     #to the steps with respect to the current position
     #TODO: validate moves are in range
     def move_right(self, num_steps: int) -> List[str]:
-        print(num_steps)
+    
 
         x, y = self.current_pos
         #note that ord('a') - the ACII representation of 'a' has value 97
         x_index = self.cols.index(x)
         steps: List[str] = []
         for j in range(x_index +1 , x_index + num_steps + 1):
-            steps.append(f'{self.cols[j]}{y}')
+            if -1 <j < 8:
+                steps.append(f'{self.cols[j]}{y}')
         steps.reverse()
         return steps
 
@@ -93,14 +93,15 @@ class Piece(ABC):
     #to the steps with respect to the current position
     #TODO: validate moves are in range
     def move_backward(self, num_steps: int) -> List[str]:
-        print(num_steps)
+    
 
         x, y = self.current_pos #ex: extracts a, 1 from string 'a1'
         y_index = self.rows.index(y)
         steps: List[str] = []
 
         for i in range(y_index -1, y_index - num_steps -1, -1):
-            steps.append(f'{x}{self.rows[ i ]}')
+            if -1< i < 8:
+                steps.append(f'{x}{self.rows[ i ]}')
         steps.reverse()
         return steps
     '''
@@ -108,8 +109,10 @@ class Piece(ABC):
     - starting off from self.current_pos
     '''
     def move_diagonally(self) -> List[List[str]]:
+
+      
         
-        x, y = self.current_pos
+        x, y = self.current_pos[0], self.current_pos[1]
         x_index = self.cols.index(x)
         y_index = self.rows.index(y)
         #specify size or we get index out of range error
@@ -128,7 +131,7 @@ class Piece(ABC):
             LU.append(f'{self.cols[tmp1]}{self.rows[tmp2]}')
             tmp1 -= 1
             tmp2 += 1
-    
+        LU = LU[1:]
         tmp1 = x_index
         tmp2 = y_index
     
@@ -138,6 +141,8 @@ class Piece(ABC):
             LD.append(f'{self.cols[tmp1]}{self.rows[tmp2]}')
             tmp1 -= 1
             tmp2 -= 1
+
+        LD = LD[1:]
        
         tmp1 = x_index
         tmp2 = y_index
@@ -148,7 +153,7 @@ class Piece(ABC):
             RU.append(f'{self.cols[tmp1]}{self.rows[tmp2]}')
             tmp1 += 1
             tmp2 += 1
-
+        RU = RU[1:]
         tmp1 = x_index
         tmp2 = y_index
     
@@ -157,7 +162,7 @@ class Piece(ABC):
             RD.append(f'{self.cols[tmp1]}{self.rows[tmp2]}')
             tmp1 += 1
             tmp2 -= 1
-
+        RD = RD[1:]
         tmp1 = x_index
         tmp2 = y_index
         
