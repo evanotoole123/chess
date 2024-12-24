@@ -1,4 +1,5 @@
 from chessBoard import ChessBoard
+from illegalMoveError import IllegalMoveError
 from pawn import Pawn
 from piece import Piece
 from rook import Rook
@@ -236,8 +237,16 @@ class Referee:
             self.chessboard_dict[ curr_piece.current_pos ] = None
             self.chessboard_dict[ new_pos ] = curr_piece 
             curr_piece.current_pos = new_pos
+
             self.black_in_check()
             self.white_in_check()
+            mate = self.checkmate()
+            if mate:
+                if self.white_check:
+                    raise IllegalMoveError('CHECKMATE: BLACK WINS')
+                else:
+                    raise IllegalMoveError('CHECKMATE: WHITE WINS')
+
             return True
     
 

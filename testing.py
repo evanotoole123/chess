@@ -1,3 +1,4 @@
+import unittest
 from chessBoard import ChessBoard
 from pawn import Pawn
 from rook import Rook
@@ -8,6 +9,7 @@ from king import King
 from typing import List
 from piece import Color
 from referee import Referee
+from illegalMoveError import IllegalMoveError
 
 '''
 print("TESTING MOVE METHODS____________________________________________")
@@ -25,39 +27,32 @@ print(r1.chessboard_dict['f4'].get_unvalidated_moves())
 
 '''
 
-print('TESTING POSITIONS----------------------------------')
-print('TEST ONE SCHOLARS MATE')
-#series of moves: white pawn to e4, black pawn to e5, white bishop to c4,
-#black knight c6, white queen to f3 , black bishop to d6, white queen to f7
-r1 = Referee()
-r1.move('e2', 'e4')
-r1.move('e7', 'e5')
-r1.move('f1', 'c4')
-r1.move('b8', 'c6')
-r1.move('d1', 'f3')
-r1.move('f8', 'd6')
-r1.move('f3', 'f7')
-print('BLACK AND WHITE CHECK:')
-print(r1.black_check) ##working correct
-print(r1.white_check) ##working correct
-print('CHECKMATE:') 
-print(r1.checkmate()) ##FAILING
 
 
-'''
+class TestGame(unittest.TestCase):
+    def test_games(self):
+        #Testing a basic game that ends quickly (scholars mate)
+        r1 = Referee()
+        r1.move('e2', 'e4')
+        r1.move('e7', 'e5')
+        r1.move('f1', 'c4')
+        r1.move('b8', 'c6')
+        r1.move('d1', 'f3')
+        r1.move('f8', 'd6')
 
-p_white_start = Pawn(Color.white, 'd2')
-p_white_moved = Pawn(Color.white, 'd3')
+        with self.assertRaises(IllegalMoveError):
+            r1.move('f3', 'f7')
+            
+        self.assertTrue(r1.checkmate())
 
 
-p_black_start = Pawn(Color.black, 'c6')
-p_black_moved = Pawn(Color.black, 'd6')
 
-print(p_black_start.get_unvalidated_moves())
-#print(p_black_moved.get_unvalidated_moves())
+if __name__ == '__main__':
+    unittest.main()
 
-'''
 
+tester = TestGame()
+tester.test_games()
 '''
 print('Pawn Tests  move() START --------------')
 print(f'white start {p_white_start.current_pos}: ', p_white_start.move())
